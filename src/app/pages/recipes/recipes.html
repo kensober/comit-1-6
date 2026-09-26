@@ -1,0 +1,31 @@
+<main class="recipes-page">
+  <section class="recipes-container">
+    <article class="recipe-card" *ngFor="let recipe of recipesList.recipes">
+      <img class="recipe-image" [src]="recipe.image" [alt]="recipe.name">
+
+      <div class="recipe-content">
+        <h2>{{ recipe.id }} - {{ recipe.name }}</h2>
+
+        <div class="tags">
+          <span class="tag" *ngFor="let tag of recipe.tags">{{ tag }}</span>
+        </div>
+
+        <div class="recipe-info">
+          <div>
+            <h3>Ingredientes</h3>
+            <ul>
+              <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Instrucciones</h3>
+            <ol>
+              <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>

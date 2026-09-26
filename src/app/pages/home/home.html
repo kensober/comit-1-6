@@ -1,0 +1,138 @@
+<div class="home-container">
+
+  <h1>Perfiles de Clientes</h1>
+
+  <div class="clientes">
+
+    @for (persona of data; track persona.identificationNumber) {
+
+      <div class="cliente-card">
+
+        <!-- PERFIL -->
+
+        <section class="perfil">
+
+          <h2>PERFIL</h2>
+
+          <div class="dato">
+            <strong>Nombre completo</strong>
+            <span>
+              {{ persona.firstName }}
+              {{ persona.secondName }}
+              {{ persona.surname }}
+              {{ persona.secondLastName }}
+            </span>
+          </div>
+
+          <div class="dato">
+            <strong>Fecha de nacimiento</strong>
+            <span>{{ persona.birthdate }}</span>
+          </div>
+
+          <div class="dato">
+            <strong>Edad</strong>
+            <span>
+              {{ calcularEdad(persona.birthdate) }} años
+            </span>
+          </div>
+
+          <div class="dato">
+            <strong>Correo</strong>
+            <span>{{ persona.email }}</span>
+          </div>
+
+        </section>
+
+
+        <!-- HISTORIAL DE CRÉDITO -->
+
+        <section class="credito">
+
+          <h2>H. CRÉDITO</h2>
+
+          <div class="credito-actual">
+
+            <h3>Crédito actual</h3>
+
+            <p>
+              <strong>ID:</strong>
+              {{ persona.creditId }}
+            </p>
+
+            <p>
+              <strong>Monto:</strong>
+              Q {{ persona.loanAmount }}
+            </p>
+
+            <p>
+              <strong>Saldo:</strong>
+              Q {{ persona.currentBalance }}
+            </p>
+
+            <p>
+              <strong>Estado:</strong>
+
+              <span
+                class="estado"
+                [class.mora]="persona.creditStatus === 'En Mora'"
+                [class.cancelado]="persona.creditStatus === 'Cancelado'"
+              >
+                {{ persona.creditStatus }}
+              </span>
+            </p>
+
+          </div>
+
+
+          <h3>Historial anterior</h3>
+
+          @if (persona.creditHistory.length > 0) {
+
+            @for (
+              credito of persona.creditHistory;
+              track credito.pastCreditId
+            ) {
+
+              <div class="historial-item">
+
+                <p>
+                  <strong>Crédito:</strong>
+                  {{ credito.pastCreditId }}
+                </p>
+
+                <p>
+                  <strong>Monto:</strong>
+                  Q {{ credito.amount }}
+                </p>
+
+                <p>
+                  <strong>Estado:</strong>
+                  {{ credito.status }}
+                </p>
+
+                <p>
+                  <strong>Comportamiento:</strong>
+                  {{ credito.behavior }}
+                </p>
+
+              </div>
+
+            }
+
+          } @else {
+
+            <p class="sin-historial">
+              No posee créditos anteriores.
+            </p>
+
+          }
+
+        </section>
+
+      </div>
+
+    }
+
+  </div>
+
+</div>
