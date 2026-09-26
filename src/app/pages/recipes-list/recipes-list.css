@@ -59,3 +59,6 @@ tbody tr:hover {
   background: #e0e7ff;
   color: #312e81;
 }
+
+.filter-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button:disabled { opacity: 0.5; cursor: not-allowed; }

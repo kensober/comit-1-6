@@ -1,3 +1,4 @@
+import { RecipesDetailV2 } from './pages/recipes-detail-v2/recipes-detail-v2';
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Contact } from './pages/contact/contact';
@@ -12,5 +13,6 @@ export const routes: Routes = [
   { path: 'recipes', component: Recipes },
   { path: 'recipes-list', component: RecipesList },
   { path: 'recipes-detail/:id', component: RecipesDetail },
+  { path: 'recipes-detail-v2', component: RecipesDetailV2 },
   { path: '**', redirectTo: 'home' }
 ];
