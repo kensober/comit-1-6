@@ -1,31 +1,39 @@
-<main class="recipes-page">
-  <section class="recipes-container">
-    <article class="recipe-card" *ngFor="let recipe of recipesList.recipes">
-      <img class="recipe-image" [src]="recipe.image" [alt]="recipe.name">
+<section class="recipes">
+  @for (item of recipesList.recipes; track item.id) {
+    <article class="card">
+      <img class="card-image" [src]="item.image" [alt]="item.name">
 
-      <div class="recipe-content">
-        <h2>{{ recipe.id }} - {{ recipe.name }}</h2>
+      <div class="card-body">
+        <h2 class="card-title">{{ item.id }} - {{ item.name }}</h2>
 
-        <div class="tags">
-          <span class="tag" *ngFor="let tag of recipe.tags">{{ tag }}</span>
+        <div class="chips">
+          @for (tag of item.tags; track tag) {
+            <span class="chip">{{ tag }}</span>
+          }
         </div>
 
-        <div class="recipe-info">
-          <div>
+        <div class="columns">
+          <div class="column">
             <h3>Ingredientes</h3>
             <ul>
-              <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+              @for (ingredient of item.ingredients; track ingredient) {
+                <li>{{ ingredient }}</li>
+              }
             </ul>
           </div>
 
-          <div>
+          <div class="column">
             <h3>Instrucciones</h3>
             <ol>
-              <li *ngFor="let instruction of recipe.instructions">{{ instruction }}</li>
+              @for (step of item.instructions; track $index) {
+                <li>{{ step }}</li>
+              }
             </ol>
           </div>
         </div>
       </div>
     </article>
-  </section>
-</main>
+  } @empty {
+    <p>No hay información de las recetas</p>
+  }
+</section>
