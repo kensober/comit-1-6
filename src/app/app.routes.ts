@@ -1,3 +1,4 @@
+import { UsersList } from './pages/users-list/users-list';
 import { RecipesDetailV2 } from './pages/recipes-detail-v2/recipes-detail-v2';
 import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
@@ -14,5 +15,6 @@ export const routes: Routes = [
   { path: 'recipes-list', component: RecipesList },
   { path: 'recipes-detail/:id', component: RecipesDetail },
   { path: 'recipes-detail-v2', component: RecipesDetailV2 },
+  { path: 'users-list', component: UsersList },
   { path: '**', redirectTo: 'home' }
 ];
